@@ -58,10 +58,13 @@ export const config = {
   ],
 };
 
-if (!d1.accountId || !d1.databaseId || !d1.apiToken) {
+const runningOnWorker =
+  typeof caches !== "undefined" && typeof caches.default !== "undefined";
+
+if (!runningOnWorker && (!d1.accountId || !d1.databaseId || !d1.apiToken)) {
   console.warn("[wwv-api] Cloudflare D1 credentials are missing — queries will fail.");
 }
 
-if (!config.jwtSecret || config.jwtSecret === "change-me-to-a-long-random-string") {
+if (!runningOnWorker && (!config.jwtSecret || config.jwtSecret === "change-me-to-a-long-random-string")) {
   console.warn("[wwv-api] JWT_SECRET is not set — admin logins will be rejected.");
 }

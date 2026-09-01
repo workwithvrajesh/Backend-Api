@@ -31,6 +31,15 @@ function bind(sql, params = []) {
   return { sql: bound, params: values };
 }
 
+function workerDb() {
+  return globalThis.__WWV_D1 ?? null;
+}
+
+function prepared(db, bound) {
+  const stmt = db.prepare(bound.sql);
+  return bound.params.length ? stmt.bind(...bound.params) : stmt;
+}
+
 async function d1Request(body) {
   if (!d1.accountId || !d1.databaseId || !d1.apiToken) {
     throw new Error("Cloudflare D1 is not configured");
@@ -57,6 +66,15 @@ async function d1Request(body) {
 
 export async function exec(sql, params = []) {
   const bound = bind(sql, params);
+  const db = workerDb();
+  if (db) {
+    const result = await prepared(db, bound).all();
+    return {
+      rows: result.results ?? [],
+      meta: result.meta ?? {},
+      affectedRows: result.meta?.changes ?? 0,
+    };
+  }
   const [result] = await d1Request(bound);
   if (!result?.success) {
     throw new Error(result?.error || "D1 statement failed");
@@ -84,6 +102,12 @@ export async function run(sql, params = []) {
 
 export async function batch(statements) {
   if (!statements.length) return [];
+  const db = workerDb();
+  if (db) {
+    return db.batch(
+      statements.map(({ sql, params }) => prepared(db, bind(sql, params ?? []))),
+    );
+  }
   const results = await d1Request({
     batch: statements.map(({ sql, params }) => bind(sql, params ?? [])),
   });
@@ -118,7 +142,7 @@ export function jsonCol(value) {
 }
 
 export async function close() {
-  /* D1 is HTTP — nothing to drain. */
+  /* Local Node uses the HTTP D1 API; Workers use the bound DB. */
 }
 
 export const pool = { end: close };

@@ -660,6 +660,7 @@ try {
           if (typeof value === "string") process.env[key] = value;
         }
         if (env.MEDIA_KV) globalThis.__WWV_KV = env.MEDIA_KV;
+        if (env.DB) globalThis.__WWV_D1 = env.DB;
       }
       return handler.fetch(request, env, ctx);
     },

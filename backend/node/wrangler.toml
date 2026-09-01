@@ -7,6 +7,11 @@ account_id = "7712e75c497be262dad6a07f2378e10d"
 [alias]
 "iconv-lite" = "./iconv-lite-stub.cjs"
 
+[[d1_databases]]
+binding = "DB"
+database_name = "workwithvrajesh-db"
+database_id = "3d54fc00-0b85-4b29-a63c-a3527785ba92"
+
 [[kv_namespaces]]
 binding = "MEDIA_KV"
 id = "286d1ef5bdd043fa980cec00537f5a4f"

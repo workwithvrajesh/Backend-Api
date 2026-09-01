@@ -1,5 +1,5 @@
 {
-  "name": "wwv-d1-api",
+  "name": "wwv-d1-api-node",
   "version": "1.0.0",
   "private": true,
   "type": "module",
