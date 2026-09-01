@@ -1,5 +1,5 @@
 {
-  "name": "www-d1-api",
+  "name": "wwv-d1-api",
   "private": true,
   "type": "module",
   "description": "Cloudflare Worker deploy entry for the Work With Vrajesh D1 API",
