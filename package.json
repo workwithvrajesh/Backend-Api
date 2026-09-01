@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Cloudflare Worker deploy entry for the Work With Vrajesh D1 API",
   "scripts": {
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy --config wrangler.jsonc"
   },
   "workspaces": [
     "backend/node"

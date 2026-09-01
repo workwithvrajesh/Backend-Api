@@ -1,0 +1,11 @@
+{
+  "name": "www-d1-api-backend",
+  "private": true,
+  "workspaces": ["node"],
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.126.0"
+  }
+}

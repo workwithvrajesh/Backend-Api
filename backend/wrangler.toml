@@ -1,11 +1,11 @@
 name = "www-d1-api"
-main = "backend/node/server.js"
+main = "node/server.js"
 account_id = "7712e75c497be262dad6a07f2378e10d"
 compatibility_date = "2026-08-26"
 compatibility_flags = ["nodejs_compat"]
 
 [alias]
-"iconv-lite" = "./backend/node/iconv-lite-stub.cjs"
+"iconv-lite" = "./node/iconv-lite-stub.cjs"
 
 [[d1_databases]]
 binding = "DB"
