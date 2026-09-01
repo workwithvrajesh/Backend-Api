@@ -1,0 +1,21 @@
+# Route every API request through index.php, but serve uploaded files directly.
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^uploads/ - [L]
+
+RewriteRule ^create-admin\.php$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Never serve the config or helper source.
+<FilesMatch "^(config|db)\.php$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpg|jpeg|png|webp|gif|svg|pdf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>

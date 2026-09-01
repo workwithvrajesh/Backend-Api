@@ -1,0 +1,33 @@
+{
+  "name": "wwv-d1-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Node.js + Cloudflare D1 REST API for the Work With Vrajesh website and admin panel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "dev:worker": "wrangler dev",
+    "deploy": "node deploy-worker.mjs",
+    "create-admin": "node create-admin.js",
+    "import-schema": "node import.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.126.0"
+  },
+  "overrides": {
+    "iconv-lite": "0.6.3"
+  }
+}
