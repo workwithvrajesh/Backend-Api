@@ -1,0 +1,15 @@
+{
+  "name": "www-d1-api",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker deploy entry for the Work With Vrajesh D1 API",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "workspaces": [
+    "backend/node"
+  ],
+  "devDependencies": {
+    "wrangler": "^4.126.0"
+  }
+}
