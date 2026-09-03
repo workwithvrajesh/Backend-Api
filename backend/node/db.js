@@ -135,7 +135,15 @@ export function jsonCol(value) {
   if (value === null || value === undefined) return null;
   if (typeof value === "object") return value;
   try {
-    return JSON.parse(value);
+    let parsed = JSON.parse(value);
+    if (typeof parsed === "string") {
+      try {
+        parsed = JSON.parse(parsed);
+      } catch {
+        /* keep the first parse */
+      }
+    }
+    return parsed;
   } catch {
     return null;
   }

@@ -157,6 +157,8 @@ app.get(
       query(`SELECT * FROM cms_documents${filter}`),
       query(`SELECT * FROM cms_collections${filter} ORDER BY collection ASC, sort ASC, created_at ASC`),
     ]);
+    res.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    res.set("Pragma", "no-cache");
     res.json({
       documents: docs.map(docOut),
       collections: items.map(itemOut),
