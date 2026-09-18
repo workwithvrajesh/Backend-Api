@@ -1,0 +1,9 @@
+name = "wwv-www-redirect"
+main = "index.js"
+account_id = "7712e75c497be262dad6a07f2378e10d"
+compatibility_date = "2026-08-26"
+
+# Intercept www at the zone edge so Cloudflare never talks to origin (avoids 525).
+[[routes]]
+pattern = "www.workwithvrajesh.com/*"
+zone_name = "workwithvrajesh.com"
